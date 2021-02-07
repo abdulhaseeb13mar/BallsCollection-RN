@@ -7,7 +7,7 @@ import {
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
-import {Button, Avatar} from 'react-native-elements';
+import {Button} from 'react-native-elements';
 import {Measurements} from '../Resuables/Measurement';
 import {colors} from '../Resuables/frequentColors';
 import WrapperScreen from '../Resuables/WrapperScreen';
@@ -15,6 +15,7 @@ import {connect} from 'react-redux';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import NavigationRef from '../Resuables/RefNavigation';
 import Image from 'react-native-fast-image';
+import {setCurrentBallAction} from '../reduxStore/actions';
 
 function Product(props) {
   const ball = props.ball;
@@ -30,7 +31,10 @@ function Product(props) {
   //   price: '51',
   // };
   const proceedToBookings = () => {
-    NavigationRef.Navigate('ConfirmOrder');
+    props.setCurrentBallAction({
+      size: size,
+    });
+    NavigationRef.Navigate('PersonalInfo');
   };
 
   const goBack = () => NavigationRef.GoBack();
@@ -129,12 +133,9 @@ const mapStateToProps = (state) => {
   };
 };
 
-const border = {
-  borderColor: 'red',
-  borderWidth: 1,
-};
-
-export default connect(mapStateToProps, {})(React.memo(Product));
+export default connect(mapStateToProps, {setCurrentBallAction})(
+  React.memo(Product),
+);
 
 const styles = StyleSheet.create({
   dollar: {

@@ -1,7 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useEffect, useState} from 'react';
 import {Text, View, TouchableOpacity, StyleSheet} from 'react-native';
-// import {Image} from 'react-native-elements';
 import Image from 'react-native-fast-image';
 import WrapperScreen from '../Resuables/WrapperScreen';
 import Data from '../dummyData';
@@ -31,9 +30,15 @@ function Home(props) {
   };
 
   const TilePressed = (item) => {
-    props.setCurrentBallAction(item);
+    props.setCurrentBallAction({
+      ...item,
+      catagoryName: currentCat.catagoryName,
+    });
     NavigationRef.Navigate('Products');
   };
+
+  const GotoSearch = () => NavigationRef.Navigate('SearchBalls');
+
   return (
     <WrapperScreen>
       <KeyboardAwareScrollView style={styles.container}>
@@ -41,7 +46,7 @@ function Home(props) {
           <View style={styles.HeaderBarInnerWrapper}>
             <Text style={styles.HeaderText}>Sports Store</Text>
             <TouchableOpacity
-              // onPress={GotoSearch}
+              onPress={GotoSearch}
               style={{
                 padding: 7,
                 borderRadius: 12,
@@ -70,12 +75,22 @@ function Home(props) {
             )}
           />
         </View>
+        <View style={styles.footerWrapper}>
+          <Text style={styles.footerCat}>{currentCat.catagoryName}</Text>
+          <View style={styles.footerimgWrap}>
+            <Image
+              source={currentCat.icon}
+              style={styles.footerimg}
+              resizeMode="cover"
+            />
+          </View>
+        </View>
       </KeyboardAwareScrollView>
     </WrapperScreen>
   );
 }
 
-const ProductTiles = ({item, TilePressed}) => {
+export const ProductTiles = ({item, TilePressed}) => {
   return (
     <TouchableOpacity
       onPress={() => TilePressed(item)}
@@ -135,15 +150,32 @@ const HomeTabs = ({item, currentCat, changeTab}) => {
 
 export default connect(null, {setCurrentBallAction})(Home);
 
-const border = {
-  borderColor: 'red',
-  borderWidth: 1,
-};
-
 const styles = StyleSheet.create({
+  footerimg: {
+    width: Measurements.width * 0.4,
+    height: Measurements.height * 0.2,
+    opacity: 0.3,
+  },
+  footerimgWrap: {
+    position: 'absolute',
+    top: Measurements.height * 0.01,
+    right: -Measurements.width * 0.05,
+  },
+  footerCat: {
+    marginHorizontal: Measurements.width * 0.05,
+    fontSize: Measurements.width * 0.08,
+    fontWeight: 'bold',
+    fontStyle: 'italic',
+    opacity: 0.3,
+  },
+  footerWrapper: {
+    display: 'flex',
+    alignItems: 'flex-start',
+    justifyContent: 'center',
+    height: Measurements.height - Measurements.height * 0.814,
+  },
   tilesWrapper: {
-    marginLeft: Measurements.width * 0.05,
-    marginVertical: Measurements.height * 0.05,
+    marginVertical: Measurements.height * 0.03,
   },
   HeaderText: {
     fontWeight: 'bold',
@@ -231,7 +263,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   outerTileWrapper: {
-    marginRight: Measurements.width * 0.09,
+    marginVertical: Measurements.height * 0.04,
+    marginHorizontal: Measurements.width * 0.09,
     width: Measurements.width * 0.8,
     height: Measurements.height * 0.43,
     borderRadius: 15,
