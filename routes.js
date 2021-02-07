@@ -4,9 +4,9 @@ import {
   CardStyleInterpolators,
 } from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
-import Navigator from './src/shared/RefNavigation';
-import Home from './src/screens/Home/Home';
-import Products from './src/screens/Products/Products';
+import Navigator from './Resuables/RefNavigation';
+import Home from './Main/Home';
+import Products from './Main/Products';
 
 const Stack = createStackNavigator();
 

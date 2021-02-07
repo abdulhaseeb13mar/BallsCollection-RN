@@ -1,13 +1,11 @@
 import {combineReducers} from 'redux';
 import ActionTypes from './actionTypes';
 
-let dummyState = {
-  dummyState: 'dummyState',
-};
+let currentBall = {};
 
-const dummyReducer = (state = dummyState, action) => {
+const currentBallReducer = (state = currentBall, action) => {
   switch (action.type) {
-    case ActionTypes.ACTION_TYPE_1:
+    case ActionTypes.SET_CURRENT_BALL:
       state = Object.assign({}, state, {...action.payload});
       return state;
 
@@ -17,4 +15,4 @@ const dummyReducer = (state = dummyState, action) => {
   return state;
 };
 
-export default combineReducers({dummyReducer});
+export default combineReducers({currentBallReducer});

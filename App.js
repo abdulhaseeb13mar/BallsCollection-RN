@@ -9,7 +9,7 @@
 import React from 'react';
 import {RootSiblingParent} from 'react-native-root-siblings';
 import {Provider} from 'react-redux';
-import store from './src/store/store';
+import store from './reduxStore/store';
 import Routes from './routes';
 
 const App: () => React$Node = () => {
