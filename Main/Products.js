@@ -179,8 +179,7 @@ const styles = StyleSheet.create({
     fontSize: Measurements.width * 0.04,
   },
   avilOuterWrap: {
-    marginVertical: Measurements.height * 0.04,
-    width: '88%',
+    width: Measurements.width * 0.925,
   },
   discription: {
     marginTop: Measurements.height * 0.03,
@@ -226,17 +225,18 @@ const styles = StyleSheet.create({
     borderRadius: 50,
   },
   ConfirmButtonWrapper: {
-    width: '100%',
+    width: Measurements.width * 0.925,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: Measurements.height * 0.05,
+    marginTop: Measurements.height * 0.04,
+    paddingTop: Measurements.height * 0.05,
+    paddingBottom: Measurements.height * 0.02,
     borderColor: colors.lightGrey1,
     borderTopWidth: 1,
   },
   SchedulePickerWrapper: {
-    height: Measurements.height * 0.42,
-    paddingHorizontal: Measurements.width * 0.005,
+    paddingTop: Measurements.height * 0.04,
     backgroundColor: 'white',
     elevation: 3,
     shadowColor: '#000',
@@ -248,19 +248,6 @@ const styles = StyleSheet.create({
     shadowRadius: 2.22,
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  pt_imageBackground: {
-    width: '100%',
-    height: Measurements.height * 0.65,
-    position: 'relative',
-    elevation: 2,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.2,
-    shadowRadius: 1.41,
+    justifyContent: 'flex-start',
   },
 });

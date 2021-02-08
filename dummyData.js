@@ -28,15 +28,6 @@ export default {
   ],
   product: [
     {
-      id: '1',
-      catagoryId: '1',
-      productName: 'adidas MLS Club Ball',
-      images: require('./pictures/product1.png'),
-      discription:
-        'Celebrating 25 consecutive years of elite club football in the US and Canada. Created for kickabouts, this adidas MLS Nativo XXV Club Ball has a dynamic design',
-      price: '9',
-    },
-    {
       id: '2',
       catagoryId: '1',
       productName: 'Wilson Traditional Soccer Ball',

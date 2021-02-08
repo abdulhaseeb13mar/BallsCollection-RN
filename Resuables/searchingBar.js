@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     borderRadius: 10,
     width: Measurements.width * 0.9,
+    height: Measurements.height * 0.07,
     paddingHorizontal: 10,
     elevation: 2,
     shadowColor: '#000',

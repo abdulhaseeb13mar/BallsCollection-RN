@@ -12,11 +12,11 @@ import {connect} from 'react-redux';
 import WrapperScreen from '../Resuables/WrapperScreen';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {Measurements} from '../Resuables/Measurement';
 import {colors} from '../Resuables/frequentColors';
 import {Button, Overlay} from 'react-native-elements';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import Feather from 'react-native-vector-icons/Feather';
 import {isFormValid} from '../Resuables/validation';
 import NavigationRef from '../Resuables/RefNavigation';
 import {setUserInfoAction} from '../reduxStore/actions';
@@ -184,8 +184,8 @@ const ConfirmOrder = (props) => {
               FIRST NAME <Text> {firstNameErrMsg}</Text>
             </Text>
             <View style={styles.personalInfoInputWrapper}>
-              <MaterialIcons
-                name="person"
+              <Feather
+                name="user"
                 size={Measurements.width * 0.07}
                 style={styles.inputIcon}
               />
@@ -205,8 +205,8 @@ const ConfirmOrder = (props) => {
               LAST NAME <Text> {lastNameErrMsg}</Text>
             </Text>
             <View style={styles.personalInfoInputWrapper}>
-              <MaterialIcons
-                name="person"
+              <Feather
+                name="user"
                 size={Measurements.width * 0.07}
                 style={styles.inputIcon}
               />
@@ -226,8 +226,8 @@ const ConfirmOrder = (props) => {
               EMAIL<Text> {emailErrMsg}</Text>
             </Text>
             <View style={styles.personalInfoInputWrapper}>
-              <MaterialIcons
-                name="email"
+              <Feather
+                name="mail"
                 size={Measurements.width * 0.07}
                 style={styles.inputIcon}
               />
@@ -247,8 +247,8 @@ const ConfirmOrder = (props) => {
               PHONE<Text> {phoneErrMsg}</Text>
             </Text>
             <View style={styles.personalInfoInputWrapper}>
-              <MaterialIcons
-                name="phone-iphone"
+              <Feather
+                name="phone"
                 size={Measurements.width * 0.07}
                 style={styles.inputIcon}
               />
@@ -269,18 +269,22 @@ const ConfirmOrder = (props) => {
               ADDRESS<Text> {addressErrMsg}</Text>
             </Text>
             <View style={styles.personalInfoInputWrapper}>
-              <MaterialIcons
-                name="location-pin"
+              <Feather
+                name="map-pin"
                 size={Measurements.width * 0.07}
                 style={{
                   ...styles.inputIcon,
                   alignSelf: 'flex-start',
-                  marginTop: 10,
+                  marginTop: Measurements.height * 0.01,
                 }}
               />
               <TextInput
                 placeholder="Address"
-                style={{...styles.Input, height: 100, textAlignVertical: 'top'}}
+                style={{
+                  ...styles.Input,
+                  height: Measurements.height * 0.12,
+                  textAlignVertical: 'top',
+                }}
                 multiline={true}
                 onChangeText={changeAddress}
               />
@@ -384,18 +388,21 @@ const styles = StyleSheet.create({
     marginBottom: Measurements.height * 0.02,
   },
   Input: {
-    width: '93%',
+    width: Measurements.width * 0.81,
     height: Measurements.height * 0.065,
   },
   inputIcon: {
-    width: '7%',
+    display: 'flex',
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+    width: Measurements.width * 0.09,
     color: colors.primary,
   },
   personalInfoInputWrapper: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     backgroundColor: 'white',
     paddingHorizontal: Measurements.width * 0.02,
     borderRadius: 5,

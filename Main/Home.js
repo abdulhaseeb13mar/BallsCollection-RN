@@ -1,6 +1,12 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useEffect, useState} from 'react';
-import {Text, View, TouchableOpacity, StyleSheet} from 'react-native';
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  StyleSheet,
+  ImageBackground,
+} from 'react-native';
 import Image from 'react-native-fast-image';
 import WrapperScreen from '../Resuables/WrapperScreen';
 import Data from '../dummyData';
@@ -75,20 +81,47 @@ function Home(props) {
             )}
           />
         </View>
-        <View style={styles.footerWrapper}>
-          <Text style={styles.footerCat}>{currentCat.catagoryName}</Text>
-          <View style={styles.footerimgWrap}>
-            <Image
-              source={currentCat.icon}
-              style={styles.footerimg}
-              resizeMode="cover"
-            />
-          </View>
-        </View>
+        <Text
+          style={{
+            marginVertical: Measurements.height * 0.01,
+            marginHorizontal: Measurements.width * 0.04,
+            fontSize: Measurements.width * 0.05,
+            fontWeight: 'bold',
+            fontStyle: 'italic',
+          }}>
+          Recommended
+        </Text>
+        <Looping
+          data={tabProducts}
+          renderItem={({item}) => (
+            <FooterTiles item={item} TilePressed={TilePressed} />
+          )}
+        />
       </KeyboardAwareScrollView>
     </WrapperScreen>
   );
 }
+
+export const FooterTiles = ({item, TilePressed}) => {
+  return (
+    <View style={styles.bookingDetailsCenterOverlay}>
+      <View style={styles.bookingDetailsWrapper}>
+        <ImageBackground
+          source={item.images}
+          style={styles.TileImage}
+          imageStyle={{borderRadius: 10}}
+          resizeMode="contain"
+        />
+        <View style={styles.DetailWrapper}>
+          <Text style={styles.ProductName}>{item.productName}</Text>
+          <View style={styles.detailInner2}>
+            <Text style={styles.detailprice}>${item.price}</Text>
+          </View>
+        </View>
+      </View>
+    </View>
+  );
+};
 
 export const ProductTiles = ({item, TilePressed}) => {
   return (
@@ -151,36 +184,67 @@ const HomeTabs = ({item, currentCat, changeTab}) => {
 export default connect(null, {setCurrentBallAction})(Home);
 
 const styles = StyleSheet.create({
-  footerimg: {
-    width: Measurements.width * 0.4,
-    height: Measurements.height * 0.2,
-    opacity: 0.3,
+  TileImage: {
+    width: Measurements.width * 0.3,
+    height: Measurements.width * 0.35,
   },
-  footerimgWrap: {
-    position: 'absolute',
-    top: Measurements.height * 0.01,
-    right: -Measurements.width * 0.05,
-  },
-  footerCat: {
-    marginHorizontal: Measurements.width * 0.05,
-    fontSize: Measurements.width * 0.08,
+  ProductName: {
+    color: 'white',
+    fontSize: 18,
     fontWeight: 'bold',
-    fontStyle: 'italic',
-    opacity: 0.3,
+    width: Measurements.width * 0.35,
   },
-  footerWrapper: {
+  DetailWrapper: {
     display: 'flex',
     alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+    marginLeft: Measurements.width * 0.06,
+    position: 'relative',
+  },
+  detailprice: {
+    color: colors.lightGrey3,
+    fontSize: 15,
+    fontWeight: '700',
+  },
+  detailInner2: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginTop: 10,
+    width: Measurements.width * 0.35,
+  },
+  bookingDetailsCenterOverlay: {
+    display: 'flex',
     justifyContent: 'center',
-    height: Measurements.height - Measurements.height * 0.814,
+    alignItems: 'center',
+    marginHorizontal: Measurements.width * 0.03,
   },
-  tilesWrapper: {
-    marginVertical: Measurements.height * 0.03,
+  bookingDetailsWrapper: {
+    borderColor: '#edeef0',
+    borderWidth: 1,
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    borderRadius: 10,
+    padding: 10,
+    marginVertical: Measurements.height * 0.01,
+    backgroundColor: colors.primary,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 1.41,
+    elevation: 2,
   },
+  tilesWrapper: {},
   HeaderText: {
     fontWeight: 'bold',
     color: colors.primary,
-    fontSize: Measurements.width * 0.1,
+    fontSize: Measurements.width * 0.08,
     fontStyle: 'italic',
   },
   HeaderBarInnerWrapper: {
@@ -195,7 +259,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: Measurements.height * 0.01,
   },
   container: {flex: 1},
   image: {
@@ -239,7 +302,7 @@ const styles = StyleSheet.create({
   },
   avilOuterWrap: {
     marginBottom: Measurements.height * 0.02,
-    width: '88%',
+    width: '78%',
   },
   price: {
     marginTop: Measurements.height * 0.019,
@@ -263,7 +326,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   outerTileWrapper: {
-    marginVertical: Measurements.height * 0.04,
     marginHorizontal: Measurements.width * 0.09,
     width: Measurements.width * 0.8,
     height: Measurements.height * 0.43,
