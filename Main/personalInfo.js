@@ -274,16 +274,12 @@ const ConfirmOrder = (props) => {
                 size={Measurements.width * 0.07}
                 style={{
                   ...styles.inputIcon,
-                  alignSelf: 'flex-start',
-                  marginTop: Measurements.height * 0.01,
                 }}
               />
               <TextInput
                 placeholder="Address"
                 style={{
                   ...styles.Input,
-                  height: Measurements.height * 0.12,
-                  textAlignVertical: 'top',
                 }}
                 multiline={true}
                 onChangeText={changeAddress}
